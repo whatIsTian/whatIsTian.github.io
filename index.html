@@ -1,12 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>I唐小奕I</title>
-        <link rel="shortcut icon" type="image/x-icon" href="./favicon.svg?">
-    </head>
+
+<head>
+    <title>I唐小奕I</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.svg?">
+</head>
+
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+    <p id='content'></p>
+    <div id="list"></div>
 </body>
+<script src="./lib/mottos.js"></script>
 <script src="./lib/index.js"></script>
+<script>
+    const mottos = getMottos();
+    const setContext = () => {
+        const index = Math.floor(Math.random()*mottos.length)
+        document.getElementById('content').innerHTML= mottos[index]
+    }
+    setContext()
+    setInterval(setContext, 5000);
+
+    /*mottos.sort((prev,next)=>{
+        return prev.length - next.length
+    })*/
+    let html = '<ol>';
+    for(item of mottos){
+        html += `<li>&nbsp;${item}</li>`
+    }
+    html += '</ol>'
+    document.getElementById('list').innerHTML = html
+
+</script>
+
 </html>
