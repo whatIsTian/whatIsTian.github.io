@@ -13,13 +13,25 @@
 <script src="./lib/mottos.js"></script>
 <script src="./lib/index.js"></script>
 <script>
-    const mottos = getMottos();
-    const setContext = () => {
-        const index = Math.floor(Math.random()*mottos.length)
-        document.getElementById('content').innerHTML= mottos[index]
+    
+    const getRandomIndex = (length = 0)=>{
+        return Math.floor(Math.random()*length)
     }
-    setContext()
-    setInterval(setContext, 5000);
+    const mottos = getMottos();
+    
+    const setContext = (str) => {
+        document.getElementById('content').innerHTML= str
+        setTimeout(()=>{
+            const index = getRandomIndex(mottos.length)
+            setContext(mottos[index]);
+        },str.length*300)
+    }
+
+
+    const index = getRandomIndex(mottos.length)
+    setContext(mottos[index])
+    // setInterval(setContext, 5000);
+    
 
     /*mottos.sort((prev,next)=>{
         return prev.length - next.length
